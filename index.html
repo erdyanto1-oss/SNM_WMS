@@ -192,7 +192,7 @@
             <div id="view-locations" class="view-section hide">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
                     <h2 class="text-lg font-semibold text-gray-800">Daftar Lokasi Penyimpanan</h2>
-                    <button onclick="openModal('locationModal')" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 shadow flex items-center admin-only">
+                    <button onclick="openAddLocationModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 shadow flex items-center admin-only">
                         <i class="fas fa-plus mr-2"></i> Tambah Lokasi
                     </button>
                 </div>
@@ -205,7 +205,7 @@
             <div id="view-products" class="view-section hide">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
                     <input type="text" id="searchProduct" placeholder="Cari Produk..." class="border rounded-lg px-4 py-2 text-sm w-full sm:w-64" onkeyup="renderProducts()">
-                    <button onclick="openModal('productModal')" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 shadow flex items-center admin-only">
+                    <button onclick="openAddProductModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 shadow flex items-center admin-only">
                         <i class="fas fa-plus mr-2"></i> Tambah Produk
                     </button>
                 </div>
@@ -343,7 +343,7 @@
             <div id="view-users" class="view-section hide">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-lg font-semibold text-gray-800">Manajemen Pengguna</h2>
-                    <button onclick="openModal('userModal')" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 shadow flex items-center">
+                    <button onclick="openAddUserModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 shadow flex items-center">
                         <i class="fas fa-user-plus mr-2"></i> Tambah User
                     </button>
                 </div>
@@ -757,6 +757,33 @@
 
         function openModal(id) { document.getElementById(id).classList.remove('hidden'); document.getElementById(id).classList.add('flex'); }
         function closeModal(id) { document.getElementById(id).classList.add('hidden'); document.getElementById(id).classList.remove('flex'); }
+
+        // FUNGSI BARU: Khusus untuk membuka modal tambah (Reset/Kosongkan form sebelumnya)
+        function openAddProductModal() {
+            document.getElementById('prodId').value = '';
+            document.getElementById('prodSku').value = '';
+            document.getElementById('prodName').value = '';
+            document.getElementById('productModalTitle').textContent = 'Tambah Produk Baru';
+            openModal('productModal');
+        }
+
+        function openAddLocationModal() {
+            document.getElementById('locId').value = '';
+            document.getElementById('locCode').value = '';
+            document.getElementById('locName').value = '';
+            document.getElementById('locDesc').value = '';
+            document.getElementById('locationModalTitle').textContent = 'Tambah Lokasi Baru';
+            openModal('locationModal');
+        }
+
+        function openAddUserModal() {
+            document.getElementById('userId').value = '';
+            document.getElementById('userUsername').value = '';
+            document.getElementById('userPassword').value = '';
+            document.getElementById('userRole').value = 'staff';
+            document.getElementById('userModalTitle').textContent = 'Tambah User Baru';
+            openModal('userModal');
+        }
 
         // --- 6. VIEW RENDERING ---
 
